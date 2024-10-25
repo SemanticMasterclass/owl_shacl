@@ -5,4 +5,3 @@ https://mybinder.org/v2/gh/SemanticMasterclass/owl_vs_shacl/main?labpath=noteboo
 
 ### Expand to see the text below, paste it into your README to show a binder badge:
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/SemanticMasterclass/owl_vs_shacl/main?labpath=notebooks%2Fowl_shacl.ipynb)
-
