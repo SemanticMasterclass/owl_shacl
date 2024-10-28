@@ -1,0 +1,5 @@
+jupyterlab
+kglab
+matplotlib
+RISE
+sparqlwrapper
