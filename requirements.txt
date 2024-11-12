@@ -1,5 +1,9 @@
 jupyterlab
 kglab
 matplotlib
-RISE
+rise
+rdflib
 sparqlwrapper
+numpy
+matplotlib
+jupyter_dashboards
