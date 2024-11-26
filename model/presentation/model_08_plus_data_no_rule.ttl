@@ -1,0 +1,155 @@
+@prefix : <http://example.com/> .
+@prefix ex: <http://example.com/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://example.com/> .
+
+<http://example.com/> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://example.com/belongsToHistoricalMovement
+ex:belongsToHistoricalMovement rdf:type owl:ObjectProperty ;
+                               rdfs:domain ex:Artefact ;
+                               rdfs:range ex:Movement .
+
+
+###  http://example.com/hasArtist
+ex:hasArtist rdf:type owl:ObjectProperty ;
+             owl:inverseOf ex:isArtistOf ;
+             rdfs:domain ex:Artefact ;
+             rdfs:range ex:Artist .
+
+
+###  http://example.com/isArtistOf
+ex:isArtistOf rdf:type owl:ObjectProperty ;
+              rdfs:domain ex:Artist ;
+              rdfs:range ex:Artefact .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://example.com/hasEndCreationDate
+ex:hasEndCreationDate rdf:type owl:DatatypeProperty ;
+                      rdfs:domain ex:Artefact ;
+                      rdfs:range xsd:integer .
+
+
+###  http://example.com/hasEndDate
+ex:hasEndDate rdf:type owl:DatatypeProperty ;
+              rdfs:domain ex:Movement ;
+              rdfs:range xsd:integer .
+
+
+###  http://example.com/hasStartCreationDate
+ex:hasStartCreationDate rdf:type owl:DatatypeProperty ;
+                        rdfs:domain ex:Artefact ;
+                        rdfs:range xsd:integer .
+
+
+###  http://example.com/hasStartDate
+ex:hasStartDate rdf:type owl:DatatypeProperty ;
+                rdfs:domain ex:Movement ;
+                rdfs:range xsd:integer .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://example.com/Artefact
+ex:Artefact rdf:type owl:Class ;
+            owl:disjointWith ex:Artist .
+
+
+###  http://example.com/Artist
+ex:Artist rdf:type owl:Class .
+
+
+###  http://example.com/Movement
+ex:Movement rdf:type owl:Class ;
+            rdfs:subClassOf [ rdf:type owl:Restriction ;
+                              owl:onProperty ex:hasEndDate ;
+                              owl:someValuesFrom xsd:integer
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty ex:hasStartDate ;
+                              owl:someValuesFrom xsd:integer
+                            ] .
+
+
+###  http://example.com/Painting
+ex:Painting rdf:type owl:Class ;
+            rdfs:subClassOf ex:Artefact .
+
+
+###  http://example.com/Sculpture
+ex:Sculpture rdf:type owl:Class ;
+             rdfs:subClassOf ex:Artefact .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://example.com/cubism
+ex:cubism rdf:type owl:NamedIndividual ;
+          ex:hasEndDate 1940 ;
+          ex:hasStartDate 1900 ;
+          rdfs:label "Cubism"@en .
+
+
+###  http://example.com/leonardo_da_vinci
+ex:leonardo_da_vinci rdf:type owl:NamedIndividual ,
+                              ex:Artist ;
+                     rdfs:label "Leonardo Da Vinci" .
+
+
+###  http://example.com/mona_lisa
+ex:mona_lisa rdf:type owl:NamedIndividual ,
+                      ex:Painting ;
+             ex:hasArtist ex:leonardo_da_vinci ;
+             ex:hasEndCreationDate 1517 ;
+             ex:hasStartCreationDate 1503 ;
+             rdfs:label "Mona Lisa"@en .
+
+
+###  http://example.com/pablo_picasso
+ex:pablo_picasso rdf:type owl:NamedIndividual ,
+                          ex:Artist ;
+                 rdfs:label "Pablo Picasso" .
+
+
+###  http://example.com/renaissance
+ex:renaissance rdf:type owl:NamedIndividual ;
+               ex:hasEndDate 1600 ;
+               ex:hasStartDate 1401 ;
+               rdfs:label "Renaissance"@en .
+
+
+###  http://example.com/the_last_supper
+ex:the_last_supper rdf:type owl:NamedIndividual ,
+                            ex:Painting ;
+                   ex:hasArtist ex:leonardo_da_vinci ;
+                   ex:hasEndCreationDate 1498 ;
+                   ex:hasStartCreationDate 1494 ;
+                   rdfs:label "The Last Supper"@en .
+
+
+###  http://example.com/weeping_woman
+ex:weeping_woman rdf:type owl:NamedIndividual ,
+                          ex:Painting ;
+                 ex:hasArtist ex:pablo_picasso ;
+                 ex:hasEndCreationDate 1937 ;
+                 ex:hasStartCreationDate 1937 ;
+                 rdfs:label "Weeping Woman"@en .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
