@@ -1,0 +1,48 @@
+@prefix ex: <http://example.com/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+ex:Artefact a owl:Class.
+
+ex:Sculpture rdfs:subClassOf ex:Artefact.
+
+ex:Painting rdfs:subClassOf ex:Artefact.
+
+ex:HistoricalMovement a owl:Class.
+
+ex:Artist a owl:Class.
+
+ex:belongsToHistoricalMovement a owl:ObjectProperty;
+    rdfs:domain ex:Artefact;
+    rdfs:range ex:HistoricalMovement.
+
+ex:hasArtist a owl:ObjectProperty;
+    rdfs:domain ex:Artefact;
+    rdfs:range ex:Artist.
+
+ex:hasEndCreationDate a owl:DatatypeProperty;
+    rdfs:domain ex:Artefact;
+    rdfs:range xsd:integer.
+
+ex:hasStartCreationDate a owl:DatatypeProperty;
+    rdfs:domain ex:Artefact;
+    rdfs:range xsd:integer.
+
+ex:material a owl:DatatypeProperty;
+    rdfs:domain ex:Artefact;
+    rdfs:range xsd:string.
+
+ex:hasPaintType a owl:DatatypeProperty;
+    rdfs:domain ex:Painting;
+    rdfs:range xsd:string.
+
+ex:hasStartingDate a owl:DatatypeProperty;
+    rdfs:domain ex:HistoricalMovement;
+    rdfs:range xsd:integer.
+
+ex:hasEndingDate a owl:DatatypeProperty;
+    rdfs:domain ex:HistoricalMovement;
+    rdfs:range xsd:integer.
+
