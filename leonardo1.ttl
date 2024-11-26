@@ -1,0 +1,20 @@
+@prefix ex: <http://example.com/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ex:mona_lisa a ex:Painting ;
+    rdfs:label "Mona Lisa"@en ;
+    ex:belongsToHistoricalMovement "Renaissance"@en ;
+    ex:hasArtist ex:leonardo_da_vinci ;
+    ex:hasStartCreationDate 1503 ;
+    ex:hasEndCreationDate 1517 .
+
+ex:the_last_supper a ex:Painting ;
+    rdfs:label "The Last Supper"@en ;
+    ex:belongsToHistoricalMovement "Renaissance"@en ;
+    ex:hasArtist ex:leonardo_da_vinci ;
+    ex:hasStartCreationDate 1494 ;
+    ex:hasEndCreationDate 1498 .
