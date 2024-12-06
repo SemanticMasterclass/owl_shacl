@@ -1,9 +1,0 @@
-jupyterlab
-kglab
-matplotlib
-rise
-rdflib
-sparqlwrapper
-numpy
-matplotlib
-jupyter_dashboards
