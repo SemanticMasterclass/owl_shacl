@@ -78,7 +78,7 @@ PREFIX ex: <http://example.com/>
 
 SELECT ?x
 WHERE {
-    ?x a ex:Artefact . 
+    ?x a ex:Painting . 
     }
 
 <------------------------------------------------>
@@ -92,7 +92,35 @@ PREFIX ex: <http://example.com/>
 
 SELECT DISTINCT ?x
 WHERE {
+    ?x a ex:Artefact .  
+    }
+
+<------------------------------------------------>
+## Query 2.4 ##
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX ex: <http://example.com/>
+
+SELECT DISTINCT ?x
+WHERE {
     ?x rdf:type/rdfs:subClassOf* ex:Artefact .  
+    }
+
+<------------------------------------------------>
+## Query 2.5 ##
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX ex: <http://example.com/>
+
+SELECT DISTINCT ?x
+WHERE {
+    ?x a ex:Artefact .  
     }
 
 <------------------------------------------------>
@@ -111,8 +139,7 @@ PREFIX ex: <http://example.com/>
 
 SELECT DISTINCT ?Artist ?Movement
 WHERE {
-    ?x a ex:Artefact ;
-      ex:hasArtist ?Artist ;
+    ?Artist a ex:Artist ;
       ex:belongsToHistoricalMovement ?Movement .
 }
 
