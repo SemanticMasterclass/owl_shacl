@@ -1,0 +1,346 @@
+@prefix : <http://example.com/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://example.com/> .
+
+<http://example.com/> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://example.com/belongsToHistoricalMovement
+:belongsToHistoricalMovement rdf:type owl:ObjectProperty ;
+                             rdfs:range :Movement ;
+                             owl:propertyChainAxiom ( :isArtistOf
+                                                      :belongsToHistoricalMovement
+                                                    ) .
+
+
+###  http://example.com/hasArtist
+:hasArtist rdf:type owl:ObjectProperty ;
+           owl:inverseOf :isArtistOf ;
+           rdfs:domain :Artefact ;
+           rdfs:range :Artist .
+
+
+###  http://example.com/isArtistOf
+:isArtistOf rdf:type owl:ObjectProperty ;
+            rdfs:domain :Artist ;
+            rdfs:range :Artefact .
+
+
+###  http://example.com/isExhibitedIn
+:isExhibitedIn rdf:type owl:ObjectProperty ;
+               rdfs:domain :Artefact ;
+               rdfs:range :Premises .
+
+
+###  http://example.com/isLocatedIn
+:isLocatedIn rdf:type owl:ObjectProperty ,
+                      owl:TransitiveProperty ;
+             owl:propertyChainAxiom ( :isExhibitedIn
+                                      :isLocatedIn
+                                    ) .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://example.com/hasEndCreationDate
+:hasEndCreationDate rdf:type owl:DatatypeProperty ,
+                             owl:FunctionalProperty ;
+                    rdfs:domain :Artefact ;
+                    rdfs:range xsd:integer .
+
+
+###  http://example.com/hasEndDate
+:hasEndDate rdf:type owl:DatatypeProperty ;
+            rdfs:domain :Movement ;
+            rdfs:range xsd:integer .
+
+
+###  http://example.com/hasPaintType
+:hasPaintType rdf:type owl:DatatypeProperty ;
+              rdfs:range xsd:string .
+
+
+###  http://example.com/hasSculptureMaterial
+:hasSculptureMaterial rdf:type owl:DatatypeProperty ;
+                      rdfs:range xsd:string .
+
+
+###  http://example.com/hasStartCreationDate
+:hasStartCreationDate rdf:type owl:DatatypeProperty ,
+                               owl:FunctionalProperty ;
+                      rdfs:domain :Artefact ;
+                      rdfs:range xsd:integer .
+
+
+###  http://example.com/hasStartDate
+:hasStartDate rdf:type owl:DatatypeProperty ;
+              rdfs:domain :Movement ;
+              rdfs:range xsd:integer .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://example.com/Artefact
+:Artefact rdf:type owl:Class ;
+          owl:equivalentClass [ rdf:type owl:Restriction ;
+                                owl:onProperty :hasEndCreationDate ;
+                                owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                owl:onDataRange xsd:integer
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :hasStartCreationDate ;
+                                owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                owl:onDataRange xsd:integer
+                              ] .
+
+
+###  http://example.com/Artist
+:Artist rdf:type owl:Class .
+
+
+###  http://example.com/City
+:City rdf:type owl:Class ;
+      rdfs:subClassOf :Location .
+
+
+###  http://example.com/Country
+:Country rdf:type owl:Class ;
+         rdfs:subClassOf :Location .
+
+
+###  http://example.com/Location
+:Location rdf:type owl:Class .
+
+
+###  http://example.com/Movement
+:Movement rdf:type owl:Class .
+
+
+###  http://example.com/Painting
+:Painting rdf:type owl:Class ;
+          owl:equivalentClass [ rdf:type owl:Restriction ;
+                                owl:onProperty :hasPaintType ;
+                                owl:someValuesFrom xsd:string
+                              ] ;
+          rdfs:subClassOf :Artefact .
+
+
+###  http://example.com/Premises
+:Premises rdf:type owl:Class ;
+          rdfs:subClassOf :Location .
+
+
+###  http://example.com/Sculpture
+:Sculpture rdf:type owl:Class ;
+           owl:equivalentClass [ rdf:type owl:Restriction ;
+                                 owl:onProperty :hasSculptureMaterial ;
+                                 owl:someValuesFrom xsd:string
+                               ] ;
+           rdfs:subClassOf :Artefact .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://example.com/cubism
+:cubism rdf:type owl:NamedIndividual ,
+                 :Movement ;
+        :hasEndDate 1940 ;
+        :hasStartDate 1900 ;
+        rdfs:label "Cubism"@en .
+
+
+###  http://example.com/david
+:david rdf:type owl:NamedIndividual ,
+                :Artefact ,
+                :Sculpture ;
+       :belongsToHistoricalMovement :renaissance ;
+       :hasArtist :michelangelo ;
+       :isExhibitedIn :gallery_of_the_academy_florence ;
+       :isLocatedIn :florence ,
+                    :italy ;
+       :hasEndCreationDate 1504 ;
+       :hasSculptureMaterial "Marble" ;
+       :hasStartCreationDate 1501 ;
+       rdfs:label "David" .
+
+
+###  http://example.com/edvard_munch
+:edvard_munch rdf:type owl:NamedIndividual ,
+                       :Artist ;
+              :belongsToHistoricalMovement :expressionism ;
+              :isArtistOf :the_scream ;
+              rdfs:label "Edvard Munch" .
+
+
+###  http://example.com/expressionism
+:expressionism rdf:type owl:NamedIndividual ,
+                        :Movement ;
+               :hasEndDate 1910 ;
+               :hasStartDate 1890 ;
+               rdfs:label "Expressionism" .
+
+
+###  http://example.com/florence
+:florence rdf:type owl:NamedIndividual ,
+                   :City ,
+                   :Location ;
+          :isLocatedIn :italy ;
+          rdfs:label "Florence"@en .
+
+
+###  http://example.com/gallery_of_the_academy_florence
+:gallery_of_the_academy_florence rdf:type owl:NamedIndividual ,
+                                          :Location ,
+                                          :Premises ;
+                                 :isLocatedIn :florence ,
+                                              :italy ;
+                                 rdfs:label "Gallery of the Academy of Florence"@en .
+
+
+###  http://example.com/italy
+:italy rdf:type owl:NamedIndividual ,
+                :Country ,
+                :Location ;
+       rdfs:label "Italy"@en .
+
+
+###  http://example.com/leonardo_da_vinci
+:leonardo_da_vinci rdf:type owl:NamedIndividual ,
+                            :Artist ;
+                   :belongsToHistoricalMovement :renaissance ;
+                   :isArtistOf :mona_lisa ,
+                               :the_last_supper ;
+                   rdfs:label "Leonardo Da Vinci" .
+
+
+###  http://example.com/michelangelo
+:michelangelo rdf:type owl:NamedIndividual ,
+                       :Artist ;
+              :belongsToHistoricalMovement :renaissance ;
+              :isArtistOf :david ;
+              rdfs:label "Michelangelo" .
+
+
+###  http://example.com/milan
+:milan rdf:type owl:NamedIndividual ;
+       :isLocatedIn :italy ;
+       rdfs:label "Milan" .
+
+
+###  http://example.com/mona_lisa
+:mona_lisa rdf:type owl:NamedIndividual ,
+                    :Artefact ,
+                    :Painting ;
+           :belongsToHistoricalMovement :renaissance ;
+           :hasArtist :leonardo_da_vinci ;
+           :hasEndCreationDate 1517 ;
+           :hasStartCreationDate 1503 ;
+           rdfs:label "Mona Lisa" .
+
+
+###  http://example.com/pablo_picasso
+:pablo_picasso rdf:type owl:NamedIndividual ,
+                        :Artist ;
+               :belongsToHistoricalMovement :cubism ;
+               :isArtistOf :weeping_woman ;
+               rdfs:label "Pablo Picasso" .
+
+
+###  http://example.com/renaissance
+:renaissance rdf:type owl:NamedIndividual ,
+                      :Movement ;
+             :hasEndDate 1600 ;
+             :hasStartDate 1401 ;
+             rdfs:label "Renaissance" .
+
+
+###  http://example.com/sandro_botticelli
+:sandro_botticelli rdf:type owl:NamedIndividual ,
+                            :Artist ;
+                   :belongsToHistoricalMovement :renaissance ;
+                   :isArtistOf :the_birth_of_venus ;
+                   rdfs:label "Sandro Botticelli" .
+
+
+###  http://example.com/santa_maria_delle_grazie
+:santa_maria_delle_grazie rdf:type owl:NamedIndividual ,
+                                   :Location ,
+                                   :Premises ;
+                          :isLocatedIn :italy ,
+                                       :milan ;
+                          rdfs:label "Santa Maria delle Grazie" .
+
+
+###  http://example.com/the_birth_of_venus
+:the_birth_of_venus rdf:type owl:NamedIndividual ,
+                             :Artefact ,
+                             :Painting ;
+                    :belongsToHistoricalMovement :renaissance ;
+                    :hasArtist :sandro_botticelli ;
+                    :isExhibitedIn :uffizi_gallery ;
+                    :isLocatedIn :florence ,
+                                 :italy ;
+                    :hasEndCreationDate 1486 ;
+                    :hasStartCreationDate 1484 ;
+                    rdfs:label "The Birth of Venus" .
+
+
+###  http://example.com/the_last_supper
+:the_last_supper rdf:type owl:NamedIndividual ,
+                          :Artefact ,
+                          :Painting ;
+                 :belongsToHistoricalMovement :renaissance ;
+                 :hasArtist :leonardo_da_vinci ;
+                 :isExhibitedIn :santa_maria_delle_grazie ;
+                 :isLocatedIn :italy ,
+                              :milan ;
+                 :hasEndCreationDate 1498 ;
+                 :hasStartCreationDate 1494 ;
+                 rdfs:label "The Last Supper" .
+
+
+###  http://example.com/the_scream
+:the_scream rdf:type owl:NamedIndividual ,
+                     :Artefact ,
+                     :Painting ;
+            :belongsToHistoricalMovement :expressionism ;
+            :hasArtist :edvard_munch ;
+            :hasEndCreationDate 1893 ;
+            :hasStartCreationDate 1893 ;
+            rdfs:label "The Scream" .
+
+
+###  http://example.com/uffizi_gallery
+:uffizi_gallery rdf:type owl:NamedIndividual ,
+                         :Location ,
+                         :Premises ;
+                :isLocatedIn :florence ,
+                             :italy ;
+                rdfs:label "Uffizi Gallery" .
+
+
+###  http://example.com/weeping_woman
+:weeping_woman rdf:type owl:NamedIndividual ,
+                        :Artefact ,
+                        :Painting ;
+               :belongsToHistoricalMovement :cubism ;
+               :hasArtist :pablo_picasso ;
+               :hasEndCreationDate 1937 ;
+               :hasStartCreationDate 1937 ;
+               rdfs:label "Weeping Woman" .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
