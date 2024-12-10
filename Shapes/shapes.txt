@@ -1,0 +1,17 @@
+Museum SHACL shapes
+
+Slide 13: https://s.zazuko.com/dwpSfy
+
+Slide 27: https://s.zazuko.com/V8CWRc
+
+Slide 47: https://s.zazuko.com/2x9W4EW
+doesn't show the error: https://s.zazuko.com/2DAuApR
+solution, define the schema in the data graph: https://s.zazuko.com/BFJ3jm
+issue: if we close the shapes: https://s.zazuko.com/25yAghD
+
+Slide 50: https://s.zazuko.com/V8M9tv
+https://s.zazuko.com/3zXqWN1
+
+Slide 55: https://s.zazuko.com/2mCeo9D
+
+Slide 71: https://s.zazuko.com/c21tht
