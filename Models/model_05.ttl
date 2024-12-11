@@ -94,7 +94,8 @@ ex:michelangelo rdf:type owl:NamedIndividual ,
 
 
 ###  http://example.com/mona_lisa
-ex:mona_lisa rdf:type owl:NamedIndividual ;
+ex:mona_lisa rdf:type owl:NamedIndividual ,
+                            ex:Artefact ;
              ex:hasArtist ex:leonardo_da_vinci ;
              ex:belongsToHistoricalMovement "Renaissance" ;
              ex:hasEndCreationDate 1517 ;
