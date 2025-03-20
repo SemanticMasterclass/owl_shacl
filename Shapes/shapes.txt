@@ -1,17 +1,3 @@
 Museum SHACL shapes
 
-Shape 1: https://s.zazuko.com/dwpSfy 
-
-Shape 2: https://s.zazuko.com/V8CWRc
-
-Shape 3: https://s.zazuko.com/23SqBqu
-
-Shape 5: https://s.zazuko.com/BFJ3jm
-Shape 6: https://s.zazuko.com/2BCS29v
-
-Shape 7: https://s.zazuko.com/V8M9tv
-Shape 8: https://s.zazuko.com/3zXqWN1
-
-Shape 9: https://s.zazuko.com/2mCeo9D
-
-Shape 10: https://s.zazuko.com/c21tht
+Please refer to slides
