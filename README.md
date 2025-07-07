@@ -1,13 +1,11 @@
-# Masterclass
+# Welcome to Semantic Masterclass
 
-## OWL or SHACL? A beginner's guide to making the right choice
+## List of tutorials
 
-#### Instructions
+### 2025
 
-- Download Protégé Desktop
-- Clone/Download the github repo: [https://github.com/SemanticMasterclass/owl_shacl](https://github.com/SemanticMasterclass/owl_shacl)
-  - `/Model` contains the models used during the workshop
-  - `/Queries` contains the SPARQL queries used in the workshop
-  - `/Shapes` contains the link to the SHACL shapes used in the workshop
+- [ISWC 2025](https://semanticmasterclass.github.io/owl_shacl/iswc2025/)
 
-##### Presented by Tara Raafat and Davide D'Amico
+### 2024
+
+- [Connected Data London](https://semanticmasterclass.github.io/owl_shacl/cdl2024)
