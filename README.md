@@ -4,7 +4,7 @@
 
 ### 2025
 
-- [ISWC 2025](https://semanticmasterclass.github.io/owl_shacl/iswc2025/)
+- [ISWC 2025](https://semanticmasterclass.github.io/iswc2025/)
 
 ### 2024
 
