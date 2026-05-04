@@ -1,11 +1,11 @@
-@prefix : <http://example.com/> .
+@prefix : <http://base.com/> .
 @prefix ex: <http://example.com/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@base <http://example.com/> .
+@base <http://base.com/> .
 
 <http://example.com/> rdf:type owl:Ontology .
 
@@ -27,12 +27,6 @@ ex:belongsToHistoricalMovement rdf:type owl:DatatypeProperty .
 
 ###  http://example.com/hasEndCreationDate
 ex:hasEndCreationDate rdf:type owl:DatatypeProperty .
-
-
-###  http://example.com/hasPaintType
-ex:hasPaintType rdf:type owl:DatatypeProperty ;
-                rdfs:domain ex:Painting ;
-                rdfs:range xsd:string .
 
 
 ###  http://example.com/hasSculptureMaterial
@@ -66,15 +60,13 @@ ex:Artist rdf:type owl:Class .
 
 
 ###  http://example.com/Painting
-ex:Painting rdf:type owl:Class .
+ex:Painting rdf:type owl:Class ;
+            rdfs:subClassOf ex:Artefact .
 
 
 ###  http://example.com/Sculpture
 ex:Sculpture rdf:type owl:Class ;
-             owl:equivalentClass [ rdf:type owl:Restriction ;
-                                   owl:onProperty ex:hasSculptureMaterial ;
-                                   owl:someValuesFrom xsd:string
-                                 ] .
+             rdfs:subClassOf ex:Artefact .
 
 
 #################################################################
@@ -82,8 +74,7 @@ ex:Sculpture rdf:type owl:Class ;
 #################################################################
 
 ###  http://example.com/david
-ex:david rdf:type owl:NamedIndividual ,
-                  ex:Sculpture ;
+ex:david rdf:type owl:NamedIndividual ;
          ex:hasArtist ex:michelangelo ;
          ex:belongsToHistoricalMovement "Renaissance" ;
          ex:hasEndCreationDate 1504 ;
@@ -110,7 +101,6 @@ ex:mona_lisa rdf:type owl:NamedIndividual ,
              ex:hasArtist ex:leonardo_da_vinci ;
              ex:belongsToHistoricalMovement "Renaissance" ;
              ex:hasEndCreationDate 1517 ;
-             ex:hasPaintType "Oil paint" ;
              ex:hasStartCreationDate 1503 ;
              rdfs:label "Mona Lisa" .
 
@@ -121,7 +111,6 @@ ex:the_last_supper rdf:type owl:NamedIndividual ,
                    ex:hasArtist ex:leonardo_da_vinci ;
                    ex:belongsToHistoricalMovement "Renaissance" ;
                    ex:hasEndCreationDate 1498 ;
-                   ex:hasPaintType "Mural Paint" ;
                    ex:hasStartCreationDate 1494 ;
                    rdfs:label "The Last Supper" .
 

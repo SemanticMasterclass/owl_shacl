@@ -1,28 +1,29 @@
-@prefix : <http://example.com/> .
+@prefix : <http://base.com/inferred/> .
 @prefix ex: <http://example.com/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@base <http://example.com/> .
+@base <http://base.com/inferred/> .
 
-<http://example.com/> rdf:type owl:Ontology .
+<http://base.com/> rdf:type owl:Ontology .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://example.com/hasPaintType
+ex:hasPaintType rdf:type owl:AnnotationProperty ;
+                rdfs:range xsd:string .
+
 
 #################################################################
 #    Object Properties
 #################################################################
 
-###  http://example.com/belongsToHistoricalMovement
-ex:belongsToHistoricalMovement rdf:type owl:ObjectProperty ;
-                               rdfs:domain ex:Artefact ;
-                               rdfs:range ex:Movement .
-
-
 ###  http://example.com/hasArtist
-ex:hasArtist rdf:type owl:ObjectProperty ;
-             rdfs:domain ex:Artefact ;
-             rdfs:range ex:Artist .
+ex:hasArtist rdf:type owl:ObjectProperty .
 
 
 #################################################################
@@ -73,10 +74,6 @@ ex:Artefact rdf:type owl:Class ;
 ex:Artist rdf:type owl:Class .
 
 
-###  http://example.com/Movement
-ex:Movement rdf:type owl:Class .
-
-
 ###  http://example.com/Painting
 ex:Painting rdf:type owl:Class ;
             rdfs:subClassOf ex:Artefact .
@@ -95,17 +92,11 @@ ex:Sculpture rdf:type owl:Class ;
 #    Individuals
 #################################################################
 
-###  http://example.com/cubism
-ex:cubism rdf:type owl:NamedIndividual ,
-                   ex:Movement ;
-          rdfs:label "Cubism" .
-
-
 ###  http://example.com/david
 ex:david rdf:type owl:NamedIndividual ,
-                  ex:Artefact ,
                   ex:Sculpture ;
          ex:hasArtist ex:michelangelo ;
+         ex:belongsToHistoricalMovement "Renaissance" ;
          ex:hasEndCreationDate 1504 ;
          ex:hasSculptureMaterial "Marble" ;
          ex:hasStartCreationDate 1501 ;
@@ -126,26 +117,21 @@ ex:michelangelo rdf:type owl:NamedIndividual ,
 
 ###  http://example.com/mona_lisa
 ex:mona_lisa rdf:type owl:NamedIndividual ,
-                      ex:Artefact ,
-                      ex:Painting ;
+                      ex:Artefact ;
              ex:hasArtist ex:leonardo_da_vinci ;
+             ex:belongsToHistoricalMovement "Renaissance" ;
              ex:hasEndCreationDate 1517 ;
-             ex:hasPaintType "Oil paint" ;
+             ex:hasPaintType "Oil Paint" ;
              ex:hasStartCreationDate 1503 ;
+             ex:hasPaintType "Oil paint" ;
              rdfs:label "Mona Lisa" .
-
-
-###  http://example.com/renaissance
-ex:renaissance rdf:type owl:NamedIndividual ,
-                        ex:Movement ;
-               rdfs:label "Renaissance" .
 
 
 ###  http://example.com/the_last_supper
 ex:the_last_supper rdf:type owl:NamedIndividual ,
-                            ex:Artefact ,
-                            ex:Painting ;
+                            ex:Artefact ;
                    ex:hasArtist ex:leonardo_da_vinci ;
+                   ex:belongsToHistoricalMovement "Renaissance" ;
                    ex:hasEndCreationDate 1498 ;
                    ex:hasPaintType "Mural Paint" ;
                    ex:hasStartCreationDate 1494 ;

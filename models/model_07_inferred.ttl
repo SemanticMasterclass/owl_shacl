@@ -1,0 +1,132 @@
+@prefix : <http://base.com/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://base.com/> .
+
+<http://base.com/> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://example.com/hasArtist
+<http://example.com/hasArtist> rdf:type owl:ObjectProperty .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://example.com/belongsToHistoricalMovement
+<http://example.com/belongsToHistoricalMovement> rdf:type owl:DatatypeProperty .
+
+
+###  http://example.com/hasEndCreationDate
+<http://example.com/hasEndCreationDate> rdf:type owl:DatatypeProperty .
+
+
+###  http://example.com/hasPaintType
+<http://example.com/hasPaintType> rdf:type owl:DatatypeProperty ;
+                                  rdfs:domain <http://example.com/Painting> ;
+                                  rdfs:range xsd:string .
+
+
+###  http://example.com/hasSculptureMaterial
+<http://example.com/hasSculptureMaterial> rdf:type owl:DatatypeProperty .
+
+
+###  http://example.com/hasStartCreationDate
+<http://example.com/hasStartCreationDate> rdf:type owl:DatatypeProperty .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://example.com/Artefact
+<http://example.com/Artefact> rdf:type owl:Class ;
+                              owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                    owl:onProperty <http://example.com/hasEndCreationDate> ;
+                                                    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                    owl:onDataRange xsd:integer
+                                                  ] ,
+                                                  [ rdf:type owl:Restriction ;
+                                                    owl:onProperty <http://example.com/hasStartCreationDate> ;
+                                                    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                    owl:onDataRange xsd:integer
+                                                  ] .
+
+
+###  http://example.com/Artist
+<http://example.com/Artist> rdf:type owl:Class .
+
+
+###  http://example.com/Painting
+<http://example.com/Painting> rdf:type owl:Class ;
+                              rdfs:subClassOf <http://example.com/Artefact> .
+
+
+###  http://example.com/Sculpture
+<http://example.com/Sculpture> rdf:type owl:Class ;
+                               owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                     owl:onProperty <http://example.com/hasSculptureMaterial> ;
+                                                     owl:someValuesFrom xsd:string
+                                                   ] ;
+                               rdfs:subClassOf <http://example.com/Artefact> .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://example.com/david
+<http://example.com/david> rdf:type owl:NamedIndividual ,
+                                    <http://example.com/Sculpture> ;
+                           <http://example.com/hasArtist> <http://example.com/michelangelo> ;
+                           <http://example.com/belongsToHistoricalMovement> "Renaissance" ;
+                           <http://example.com/hasEndCreationDate> 1504 ;
+                           <http://example.com/hasSculptureMaterial> "Marble" ;
+                           <http://example.com/hasStartCreationDate> 1501 ;
+                           rdfs:label "David" .
+
+
+###  http://example.com/leonardo_da_vinci
+<http://example.com/leonardo_da_vinci> rdf:type owl:NamedIndividual ,
+                                                <http://example.com/Artist> ;
+                                       rdfs:label "Leonardo Da Vinci" .
+
+
+###  http://example.com/michelangelo
+<http://example.com/michelangelo> rdf:type owl:NamedIndividual ,
+                                           <http://example.com/Artist> ;
+                                  rdfs:label "Michelangelo" .
+
+
+###  http://example.com/mona_lisa
+<http://example.com/mona_lisa> rdf:type owl:NamedIndividual ,
+                                        <http://example.com/Artefact> ,
+                                        <http://example.com/Painting> ;
+                               <http://example.com/hasArtist> <http://example.com/leonardo_da_vinci> ;
+                               <http://example.com/belongsToHistoricalMovement> "Renaissance" ;
+                               <http://example.com/hasEndCreationDate> 1517 ;
+                               <http://example.com/hasPaintType> "Oil paint" ;
+                               <http://example.com/hasStartCreationDate> 1503 ;
+                               rdfs:label "Mona Lisa" .
+
+
+###  http://example.com/the_last_supper
+<http://example.com/the_last_supper> rdf:type owl:NamedIndividual ,
+                                              <http://example.com/Artefact> ,
+                                              <http://example.com/Painting> ;
+                                     <http://example.com/hasArtist> <http://example.com/leonardo_da_vinci> ;
+                                     <http://example.com/belongsToHistoricalMovement> "Renaissance" ;
+                                     <http://example.com/hasEndCreationDate> 1498 ;
+                                     <http://example.com/hasPaintType> "Mural Paint" ;
+                                     <http://example.com/hasStartCreationDate> 1494 ;
+                                     rdfs:label "The Last Supper" .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi

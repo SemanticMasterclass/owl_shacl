@@ -1,13 +1,13 @@
-@prefix : <http://example.com/> .
+@prefix : <http://base.com/> .
 @prefix ex: <http://example.com/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@base <http://example.com/> .
+@base <http://base.com/> .
 
-<http://example.com/> rdf:type owl:Ontology .
+<http://base.com/> rdf:type owl:Ontology .
 
 #################################################################
 #    Object Properties
@@ -15,10 +15,8 @@
 
 ###  http://example.com/belongsToHistoricalMovement
 ex:belongsToHistoricalMovement rdf:type owl:ObjectProperty ;
-                               rdfs:range ex:Movement ;
-                               owl:propertyChainAxiom ( ex:isArtistOf
-                                                        ex:belongsToHistoricalMovement
-                                                      ) .
+                                rdfs:domain ex:Artefact ;
+                                rdfs:range ex:Movement .
 
 
 ###  http://example.com/hasArtist

@@ -1,11 +1,11 @@
-@prefix : <http://example.com/> .
+@prefix : <http://base.com/> .
 @prefix ex: <http://example.com/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@base <http://example.com/> .
+@base <http://base.com/> .
 
 <http://example.com/> rdf:type owl:Ontology .
 
@@ -25,12 +25,30 @@ ex:hasArtist rdf:type owl:ObjectProperty .
 ex:belongsToHistoricalMovement rdf:type owl:DatatypeProperty .
 
 
+###  http://example.com/hasEndCreationDate
+ex:hasEndCreationDate rdf:type owl:DatatypeProperty .
+
+
+###  http://example.com/hasStartCreationDate
+ex:hasStartCreationDate rdf:type owl:DatatypeProperty .
+
+
 #################################################################
 #    Classes
 #################################################################
 
 ###  http://example.com/Artefact
-ex:Artefact rdf:type owl:Class .
+ex:Artefact rdf:type owl:Class ;
+            owl:equivalentClass [ rdf:type owl:Restriction ;
+                                  owl:onProperty ex:hasEndCreationDate ;
+                                  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                  owl:onDataRange xsd:integer
+                                ] ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty ex:hasStartCreationDate ;
+                                  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                  owl:onDataRange xsd:integer
+                                ] .
 
 
 ###  http://example.com/Artist
@@ -45,6 +63,16 @@ ex:Artist rdf:type owl:Class .
 ex:leonardo_da_vinci rdf:type owl:NamedIndividual ,
                               ex:Artist ;
                      rdfs:label "Leonardo Da Vinci" .
+
+
+###  http://example.com/mona_lisa
+ex:mona_lisa rdf:type owl:NamedIndividual ,
+                      ex:Artefact ;
+             ex:hasArtist ex:leonardo_da_vinci ;
+             ex:belongsToHistoricalMovement "Renaissance" ;
+             ex:hasEndCreationDate 1517 ;
+             ex:hasStartCreationDate 1503 ;
+             rdfs:label "Mona Lisa" .
 
 
 ###  http://example.com/the_last_supper

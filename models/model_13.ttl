@@ -1,13 +1,13 @@
-@prefix : <http://example.com/> .
+@prefix : <http://base.com/> .
 @prefix ex: <http://example.com/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@base <http://example.com/> .
+@base <http://base.com/> .
 
-<http://example.com/> rdf:type owl:Ontology .
+<http://base.com/> rdf:type owl:Ontology .
 
 #################################################################
 #    Object Properties
@@ -41,8 +41,7 @@ ex:isExhibitedIn rdf:type owl:ObjectProperty ;
 
 
 ###  http://example.com/isLocatedIn
-ex:isLocatedIn rdf:type owl:ObjectProperty ,
-                        owl:TransitiveProperty ;
+ex:isLocatedIn rdf:type owl:ObjectProperty ;
                owl:propertyChainAxiom ( ex:isExhibitedIn
                                         ex:isLocatedIn
                                       ) .
@@ -170,7 +169,6 @@ ex:david rdf:type owl:NamedIndividual ,
          ex:belongsToHistoricalMovement ex:renaissance ;
          ex:hasArtist ex:michelangelo ;
          ex:isExhibitedIn ex:gallery_of_the_academy_florence ;
-         ex:isLocatedIn ex:florence ;
          ex:hasEndCreationDate 1504 ;
          ex:hasSculptureMaterial "Marble" ;
          ex:hasStartCreationDate 1501 ;
@@ -195,15 +193,13 @@ ex:expressionism rdf:type owl:NamedIndividual ,
 
 ###  http://example.com/florence
 ex:florence rdf:type owl:NamedIndividual ,
-                     ex:City ,
-                     ex:Location ;
+                     ex:City ;
             ex:isLocatedIn ex:italy ;
             rdfs:label "Florence"@en .
 
 
 ###  http://example.com/gallery_of_the_academy_florence
 ex:gallery_of_the_academy_florence rdf:type owl:NamedIndividual ,
-                                            ex:Location ,
                                             ex:Premises ;
                                    ex:isLocatedIn ex:florence ;
                                    rdfs:label "Gallery of the Academy of Florence"@en .
@@ -211,8 +207,7 @@ ex:gallery_of_the_academy_florence rdf:type owl:NamedIndividual ,
 
 ###  http://example.com/italy
 ex:italy rdf:type owl:NamedIndividual ,
-                  ex:Country ,
-                  ex:Location ;
+                  ex:Country ;
          rdfs:label "Italy"@en .
 
 
@@ -275,9 +270,7 @@ ex:sandro_botticelli rdf:type owl:NamedIndividual ,
 
 
 ###  http://example.com/santa_maria_delle_grazie
-ex:santa_maria_delle_grazie rdf:type owl:NamedIndividual ,
-                                     ex:Location ,
-                                     ex:Premises ;
+ex:santa_maria_delle_grazie rdf:type owl:NamedIndividual ;
                             ex:isLocatedIn ex:milan ;
                             rdfs:label "Santa Maria delle Grazie" .
 
@@ -289,7 +282,6 @@ ex:the_birth_of_venus rdf:type owl:NamedIndividual ,
                       ex:belongsToHistoricalMovement ex:renaissance ;
                       ex:hasArtist ex:sandro_botticelli ;
                       ex:isExhibitedIn ex:uffizi_gallery ;
-                      ex:isLocatedIn ex:florence ;
                       ex:hasEndCreationDate 1486 ;
                       ex:hasStartCreationDate 1484 ;
                       rdfs:label "The Birth of Venus" .
@@ -302,7 +294,6 @@ ex:the_last_supper rdf:type owl:NamedIndividual ,
                    ex:belongsToHistoricalMovement ex:renaissance ;
                    ex:hasArtist ex:leonardo_da_vinci ;
                    ex:isExhibitedIn ex:santa_maria_delle_grazie ;
-                   ex:isLocatedIn ex:milan ;
                    ex:hasEndCreationDate 1498 ;
                    ex:hasStartCreationDate 1494 ;
                    rdfs:label "The Last Supper" .
@@ -320,9 +311,7 @@ ex:the_scream rdf:type owl:NamedIndividual ,
 
 
 ###  http://example.com/uffizi_gallery
-ex:uffizi_gallery rdf:type owl:NamedIndividual ,
-                           ex:Location ,
-                           ex:Premises ;
+ex:uffizi_gallery rdf:type owl:NamedIndividual ;
                   ex:isLocatedIn ex:florence ;
                   rdfs:label "Uffizi Gallery" .
 
