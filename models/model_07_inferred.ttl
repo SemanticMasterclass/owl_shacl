@@ -96,7 +96,7 @@
 ###  http://example.com/leonardo_da_vinci
 <http://example.com/leonardo_da_vinci> rdf:type owl:NamedIndividual ,
                                                 <http://example.com/Artist> ;
-                                       rdfs:label "Leonardo Da Vinci" .
+                                       rdfs:label "Leonardo da Vinci" .
 
 
 ###  http://example.com/michelangelo

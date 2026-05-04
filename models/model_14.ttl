@@ -222,7 +222,7 @@ ex:leonardo_da_vinci rdf:type owl:NamedIndividual ,
                      ex:belongsToHistoricalMovement ex:renaissance ;
                      ex:isArtistOf ex:mona_lisa ,
                                    ex:the_last_supper ;
-                     rdfs:label "Leonardo Da Vinci" .
+                     rdfs:label "Leonardo da Vinci" .
 
 
 ###  http://example.com/michelangelo

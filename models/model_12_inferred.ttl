@@ -163,7 +163,7 @@
                                        <http://example.com/belongsToHistoricalMovement> <http://example.com/renaissance> ;
                                        <http://example.com/isArtistOf> <http://example.com/mona_lisa> ,
                                                                        <http://example.com/the_last_supper> ;
-                                       rdfs:label "Leonardo Da Vinci" .
+                                       rdfs:label "Leonardo da Vinci" .
 
 
 ###  http://example.com/michelangelo

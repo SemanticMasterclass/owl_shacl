@@ -44,7 +44,7 @@ ex:Artist rdf:type owl:Class .
 ###  http://example.com/leonardo_da_vinci
 ex:leonardo_da_vinci rdf:type owl:NamedIndividual ,
                             ex:Artist ;
-                   rdfs:label "Leonardo Da Vinci" .
+                   rdfs:label "Leonardo da Vinci" .
 
 
 ###  http://example.com/the_last_supper

@@ -154,7 +154,7 @@ ex:expressionism rdf:type owl:NamedIndividual ,
 ###  http://example.com/leonardo_da_vinci
 ex:leonardo_da_vinci rdf:type owl:NamedIndividual ,
                               ex:Artist ;
-                     rdfs:label "Leonardo Da Vinci" .
+                     rdfs:label "Leonardo da Vinci" .
 
 
 ###  http://example.com/michelangelo
